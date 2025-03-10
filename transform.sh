@@ -1,13 +1,13 @@
 #!/bin/zsh
 
-fontSuffix="z"
+fontSuffix="Z"
 fontVersion="2.304"
 
 mkdir -p "JetBrains-Mono-$fontSuffix"
 cd JetBrains-Mono
 
 # Non-italic versions
-for f in $(fd -HI ibmplexmono -e otf -E '*Italic.otf'); do
+for f in $(fd -HI JetBrainsMono -e otf -E '*Italic.otf'); do
   pyftfeatfreeze -f "ss02,cv03,cv04,cv15,cv16,cv18,cv19,cv20" -R "Mono/Mono $fontSuffix $fontVersion" -v $f "${f%.otf}.z.otf"
 done
 
