@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+rm -rf FontPatcher
+rm -rf FontPatcher.zip
+
+curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FontPatcher.zip
+unzip -d FontPatcher FontPatcher.zip
+
 fontSuffix="Z"
 fontVersion="2.304"
 
@@ -20,6 +26,10 @@ mv *.z.otf ../"JetBrains-Mono-$fontSuffix"/
 cd ../"JetBrains-Mono-$fontSuffix"/
 for f in *.z.otf; do
   mv $f "$(echo "$f" | sed s/"\.z"/"-$fontSuffix"/)"
+done
+
+for f in *.otf; do
+    fontforge -script ../FontPatcher/font-patcher $f --out ../JetBrains-Mono-$fontSuffix --name "${f%.otf}" --octicons
 done
 
 open .
