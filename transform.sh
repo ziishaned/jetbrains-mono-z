@@ -3,7 +3,7 @@
 # Variables
 fontSuffix="Z"
 fontVersion="2.304"
-outDir="JetBrainsMono-$fontSuffix"
+outDir="JetBrainsMono$fontSuffix"
 patcherRepo="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FontPatcher.zip"
 
 # Clean up and setup
@@ -31,6 +31,7 @@ done
 
 for f in *.ttf; do
   fontforge -script ../FontPatcher/font-patcher "$f" --out "../$outDir" --name "${f%.ttf}" --octicons
+  rm "$f"
 done
 
 # Open the folder
