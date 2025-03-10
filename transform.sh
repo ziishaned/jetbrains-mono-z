@@ -18,19 +18,19 @@ unzip -d FontPatcher FontPatcher.zip
 cd JetBrainsMono
 
 # Process all fonts with a single pattern (handles both italic and non-italic)
-fd -HI '\.otf$' -x pyftfeatfreeze -f "ss02,cv03,cv04,cv15,cv16,cv18,cv19,cv20" -R "Mono/Mono $fontSuffix" -v {} "{.}.z.otf" \;
+fd -HI '\.ttf$' -x pyftfeatfreeze -f "ss02,cv03,cv04,cv15,cv16,cv18,cv19,cv20" -R "Mono/Mono $fontSuffix" -v {} "{.}.z.ttf" \;
 
 # Move processed fonts to output directory
-mv *.z.otf ../"$outDir"/
+mv *.z.ttf ../"$outDir"/
 
 # Rename files properly
 cd ../"$outDir"/
-for f in *.z.otf; do
+for f in *.z.ttf; do
   mv "$f" "$(echo "$f" | sed 's/\.z/-'"$fontSuffix"'/')"
 done
 
-for f in *.otf; do
-  fontforge -script ../FontPatcher/font-patcher "$f" --out "../$outDir" --name "${f%.otf}" --octicons
+for f in *.ttf; do
+  fontforge -script ../FontPatcher/font-patcher "$f" --out "../$outDir" --name "${f%.ttf}" --octicons
 done
 
 # Open the folder
