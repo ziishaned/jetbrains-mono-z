@@ -3,7 +3,7 @@
 # Variables
 fontSuffix="Z"
 fontVersion="2.304"
-outDir="JetBrains-Mono-$fontSuffix"
+outDir="JetBrainsMono-$fontSuffix"
 patcherRepo="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FontPatcher.zip"
 
 # Clean up and setup
@@ -15,7 +15,7 @@ curl -LO "$patcherRepo"
 unzip -d FontPatcher FontPatcher.zip
 
 # Process fonts
-cd JetBrains-Mono
+cd JetBrainsMono
 
 # Process all fonts with a single pattern (handles both italic and non-italic)
 fd -HI '\.otf$' -x pyftfeatfreeze -f "ss02,cv03,cv04,cv15,cv16,cv18,cv19,cv20" -R "Mono/Mono $fontSuffix" -v {} "{.}.z.otf" \;
