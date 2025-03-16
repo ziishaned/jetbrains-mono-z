@@ -4,15 +4,9 @@
 fontSuffix="Z"
 fontVersion="2.304"
 outDir="JetBrainsMono$fontSuffix"
-patcherRepo="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FontPatcher.zip"
 
 # Clean up and setup
-rm -rf FontPatcher FontPatcher.zip
 mkdir -p "$outDir"
-
-# Download and extract patcher
-curl -LO "$patcherRepo"
-unzip -d FontPatcher FontPatcher.zip
 
 # Process fonts
 cd JetBrainsMono
@@ -27,11 +21,6 @@ mv *.z.ttf ../"$outDir"/
 cd ../"$outDir"/
 for f in *.z.ttf; do
   mv "$f" "$(echo "$f" | sed 's/\.z/-'"$fontSuffix"'/')"
-done
-
-for f in *.ttf; do
-  fontforge -script ../FontPatcher/font-patcher "$f" --out "../$outDir" --name "${f%.ttf}" --octicons
-  rm "$f"
 done
 
 # Open the folder
